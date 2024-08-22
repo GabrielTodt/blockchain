@@ -1,9 +1,14 @@
-use modules::block::Block;
+use modules::blockchain::Blockchain;
+mod tests;
 
 mod modules;
 fn main() {
-    let b1 = Block::genesis();
-    let data = String::from("Mined block");
-    let b2 = Block::mine_block(&b1, data);
-    println!("{}", b2);
+
+    let mut chain = Blockchain::new();
+    chain.add_block(String::from("B1 data"));
+    chain.add_block(String::from("B2 data"));
+    chain.add_block(String::from("B3 data"));
+    chain.add_block(String::from("B3 data"));
+    chain.add_block(String::from("B3 data"));
+    println!("{}", Blockchain::is_valid_chain(&chain));
 }
